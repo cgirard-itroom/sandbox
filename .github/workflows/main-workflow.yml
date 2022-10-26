@@ -9,10 +9,6 @@ jobs:
     Code-Quality:
         runs-on: ubuntu-latest
         steps:
-            - uses: php-actions/composer@v6
-              with:
-                  dev: no
-                  version: 2
             - name: List files in the repository
               run: ls -l ${{ github.workspace }}
             - name: List files in the repository
