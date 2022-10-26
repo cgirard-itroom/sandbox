@@ -9,4 +9,11 @@ jobs:
   Code-Quality:
     runs-on: ubuntu-latest
     steps:
-      - run: php ./vendor/bin/grumphp run
+      - uses: php-actions/composer@v6
+        with:
+          dev: no
+          version: 2
+      - name: Packages installation
+        run: composer install
+      - name: GrumPHP analysis
+        run: php ./vendor/bin/grumphp run
