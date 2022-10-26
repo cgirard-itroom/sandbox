@@ -1,20 +1,26 @@
 name: Main workflow
 run-name: ${{ github.actor }} pushed new features
-on:
-    push:
-        branches:
-            - main
-            - develop
+on: [push]
 jobs:
     Code-Quality:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-22.04
         steps:
             - name: Check out repository code
               uses: actions/checkout@v3
-            - name: Packages installation
-              uses: php-actions/composer@v6
-              with:
-                  dev: no
-                  version: 2
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@2.21.2
+                with:
+                    php-version: '8.1'
+                    coverage: none
+                    tools: composer:v2
+                    extensions: mbstring, xml, json, pdo_mysql, pdo
+            - name: Check PHP version
+              run: php -v
+            - name: Check Composer version
+              run: composer -v
+            - name: Validate composer files
+              run: composer validate
+            - name: Install required dependencies
+              run: composer install
             - name: GrumPHP analysis
               run: php ./vendor/bin/grumphp run
