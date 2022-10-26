@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.8.3
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+      MARIADB_DATABASE: mydb
+    volumes:
+      - dbdata:/var/lib/mysql
+
+  php:
+    image: ${REGISTRY:-local}/app
+    build:
+      context: ../..
+      dockerfile: infra/docker/php/Dockerfile
+      target: dev
+      cache_from:
+        - ${REGISTRY:-local}/app-builder
+        - ${REGISTRY:-local}/app
+    environment:
+      MAILER_DSN: smtp://mailhog:1025
+      TZ: Europe/Paris
+    volumes:
+      - ../..:/app
+    depends_on:
+      - db
+      - mailhog
+
+  nginx:
+    image: ${REGISTRY:-local}/nginx
+    build:
+      context: ../..
+      dockerfile: infra/docker/php/Dockerfile
+      target: nginx
+      cache_from:
+        - ${REGISTRY:-local}/nginx
+    volumes:
+      - ../../public:/app/public
+    depends_on:
+      - php
+
+  node:
+    image: ${REGISTRY:-local}/node-builder
+    build:
+      context: ../..
+      dockerfile: infra/docker/php/Dockerfile
+      target: node-builder
+      cache_from:
+        - ${REGISTRY:-local}/node-builder
+    volumes:
+      - ../..:/app
+
+  mailhog:
+    image: mailhog/mailhog
+
+volumes:
+  dbdata:

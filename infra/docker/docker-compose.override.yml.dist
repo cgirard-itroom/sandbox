@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  db:
+    ports:
+      - '3306:3306'
+
+  nginx:
+    ports:
+      - '80:80'
+
+  mailhog:
+    ports:
+      - '1025:1025'
+      - '8025:8025'
+
