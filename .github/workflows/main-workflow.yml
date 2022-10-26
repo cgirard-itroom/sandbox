@@ -16,6 +16,10 @@ jobs:
                     extensions: mbstring, xml, json, pdo_mysql, pdo
             - name: Check PHP version
               run: php -v
+            - name: Setup the local php security checker
+              run: |
+                curl -sSL https://github.com/fabpot/local-php-security-checker/releases/download/v1.2.0/local-php-security-checker_1.2.0_linux_amd64 -o /usr/local/bin/local-php-security-checker
+                chmod +x /usr/local/bin/local-php-security-checker
             - name: Check Composer version
               run: composer -v
             - name: Validate composer files
