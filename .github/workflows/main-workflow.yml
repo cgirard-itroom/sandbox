@@ -6,7 +6,7 @@ on:
       - main
       - develop
 jobs:
-  Code Quality:
+  Code-Quality:
     runs-on: ubuntu-latest
     steps:
       - run: php ./vendor/bin/grumphp run
