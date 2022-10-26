@@ -1,4 +1,6 @@
 {
+    "name": "itroom/sandbox",
+    "description": "A sandbox project to explore devops subjects",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
