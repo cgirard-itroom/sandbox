@@ -1,0 +1,12 @@
+name: Main workflow
+run-name: ${{ github.actor }} pushed new features
+on:
+  push:
+    branches:
+      - main
+      - develop
+jobs:
+  Code Quality:
+    runs-on: ubuntu-latest
+    steps:
+      - run: php ./vendor/bin/grumphp run
