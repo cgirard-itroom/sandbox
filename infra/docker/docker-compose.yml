@@ -28,6 +28,8 @@ services:
       - mailhog
 
   nginx:
+    ports:
+      - '8090:80'
     image: ${REGISTRY:-local}/nginx
     build:
       context: ../..
