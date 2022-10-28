@@ -1,3 +1,16 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-{{ form_end(form) }}
+<div class="row">
+    <div class="col">
+        {{ form_start(form) }}
+            {{ form_row(form.name) }}
+            {{ form_row(form.quantity) }}
+            {{ form_row(form.reference) }}
+            <div class="row">
+                <div class="col-3">
+                    <button class="btn btn-warning w-100">Save</button>
+                </div>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+

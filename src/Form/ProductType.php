@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\Product;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -16,25 +15,22 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom',
-                'row_attr' => [
-                    'class' => 'form',
+                'label' => 'Name',
+                'attr' => [
+                    'class' => 'form-control mb-4',
                 ],
             ])
             ->add('quantity', IntegerType::class, [
-                'label' => 'Quantité',
-                'row_attr' => [
-                    'class' => 'form',
+                'label' => 'Quantity',
+                'attr' => [
+                    'class' => 'form-control mb-4',
                 ],
             ])
             ->add('reference', TextType::class, [
-                'label' => 'Référence',
-                'row_attr' => [
-                    'class' => 'form',
+                'label' => 'Reference',
+                'attr' => [
+                    'class' => 'form-control mb-4',
                 ],
-            ])
-            ->add('save', SubmitType::class, [
-                'attr' => ['class' => 'save'],
             ])
         ;
     }
