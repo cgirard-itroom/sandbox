@@ -8,5 +8,13 @@
 // any CSS you import will output into a single css file (app.css in this case)
 import './styles/app.css';
 
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
+import { Tooltip, Toast, Popover } from 'bootstrap'
+
 // start the Stimulus application
 import './bootstrap';
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new Tooltip(tooltipTriggerEl))
