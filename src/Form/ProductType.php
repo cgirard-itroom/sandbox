@@ -17,21 +17,12 @@ class ProductType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'label' => 'Nom',
-                'row_attr' => [
-                    'class' => 'form',
-                ],
             ])
             ->add('quantity', IntegerType::class, [
                 'label' => 'Quantité',
-                'row_attr' => [
-                    'class' => 'form',
-                ],
             ])
             ->add('reference', TextType::class, [
                 'label' => 'Référence',
-                'row_attr' => [
-                    'class' => 'form',
-                ],
             ])
             ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'save'],

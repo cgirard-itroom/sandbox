@@ -5,7 +5,24 @@
 {% block body %}
     <h1>Create new Product</h1>
 
-    {{ include('product/_form.html.twig') }}
+    {{ form_start(form) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+
+    <div class="form-control">
+        <div class="col">
+            {{ form_row(form.name) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(form.quantity) }}
+        </div>
+        <div class="col" id="some-custom-id">
+            {{ form_row(form.reference) }}
+        </div>
+    </div>
+
+    {{ form_end(form) }}
 
     <a href="{{ path('app_product_index') }}">back to list</a>
 {% endblock %}
