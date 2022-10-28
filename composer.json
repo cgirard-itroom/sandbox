@@ -1,4 +1,6 @@
 {
+    "name": "itroom/sandbox",
+    "description": "A sandbox project to explore devops subjects",
     "type": "project",
     "license": "proprietary",
     "minimum-stability": "stable",
@@ -49,7 +51,8 @@
         "allow-plugins": {
             "composer/package-versions-deprecated": true,
             "symfony/flex": true,
-            "symfony/runtime": true
+            "symfony/runtime": true,
+            "phpro/grumphp": true
         },
         "optimize-autoloader": true,
         "preferred-install": {
