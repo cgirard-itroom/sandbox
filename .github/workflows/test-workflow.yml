@@ -13,6 +13,7 @@ jobs:
           php-version: '8.1'
           coverage: none
           tools: phpunit
+          extension: mbstring, xml, json, pdo_mysql, pdo
       - name: Get composer cache directory
         id: composer-cache
         run: echo "::set-output name=dir::$(composer config cache-files-dir)"
