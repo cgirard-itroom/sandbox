@@ -13,4 +13,6 @@ jobs:
           php-version: '8.1'
           coverage: none
           tools: phpunit
+      - name: Run unit tests
+        uses: php-actions/phpunit@v3
 
