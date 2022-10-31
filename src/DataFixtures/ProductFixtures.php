@@ -17,7 +17,7 @@ class ProductFixtures extends Fixture
         $faker = Factory::create();
         $faker->addProvider(new Device($faker));
 
-        for ($i = 0; $i < self::PRODUCT_NUMBER; $i++) {
+        for ($i = 0; $i < self::PRODUCT_NUMBER; ++$i) {
             $product = (new Product())
                 ->setName($faker->deviceModelName)
                 ->setCreatedAt(\DateTimeImmutable::createFromFormat('d/m/y', $faker->date('d/m/y')))

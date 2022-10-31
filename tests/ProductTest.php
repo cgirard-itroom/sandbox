@@ -34,7 +34,7 @@ class ProductTest extends WebTestCase
         $this->assertResponseRedirects();
     }
 
-    public function testDetailProduct()
+    public function testDetailProduct(): void
     {
         $client = static::createClient();
         self::bootKernel();
@@ -57,7 +57,7 @@ class ProductTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function testProductList()
+    public function testProductList(): void
     {
         $client = static::createClient();
         $client->request('GET', '/product/');
@@ -65,7 +65,7 @@ class ProductTest extends WebTestCase
         $this->assertResponseStatusCodeSame(200);
     }
 
-    public function testEditProduct()
+    public function testEditProduct(): void
     {
         $client = static::createClient();
         self::bootKernel();
@@ -98,7 +98,7 @@ class ProductTest extends WebTestCase
         $this->assertResponseRedirects();
     }
 
-    public function testDeleteProduct()
+    public function testDeleteProduct(): void
     {
         $client = static::createClient();
         self::bootKernel();
