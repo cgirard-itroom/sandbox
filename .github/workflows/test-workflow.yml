@@ -1,8 +1,8 @@
-name: unit-tests
-run-name: ${{ github.actor }} is testing code
+name: Unit tests workflow
+run-name: ${{ github.actor }} pushed
 on: [push]
 jobs:
-  Unit-Test:
+  Unit-Tests:
     runs-on: ubuntu-22.04
     steps:
       - name: Check out repository code
