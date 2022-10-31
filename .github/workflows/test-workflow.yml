@@ -37,7 +37,6 @@ jobs:
         run: composer install
       - name: Create database
         run: composer require --dev symfony/orm-pack
-            php bin/console doctrine:schema:update --force || echo "No migrations found or schema update failed"
             php bin/console doctrine:migrations:migrate || echo "No migrations found or migration failed"
         env:
             DATABASE_URL: mysql://root:ROOT@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/symfony
