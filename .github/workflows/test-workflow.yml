@@ -1,0 +1,10 @@
+name: unit-tests
+run-name: ${{ github.actor }} is testing code
+on: [push]
+jobs:
+  Unit-Test:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
