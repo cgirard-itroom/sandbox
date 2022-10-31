@@ -25,5 +25,4 @@ jobs:
       - name: Install required dependencies
         run: composer install
       - name: Run unit tests
-        uses: php-actions/phpunit@v3
         run: php bin/phpunit --filter ProductTest
