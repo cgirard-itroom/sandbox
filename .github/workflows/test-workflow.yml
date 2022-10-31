@@ -4,6 +4,16 @@ on: [push]
 jobs:
   Unit-Tests:
     runs-on: ubuntu-22.04
+    services:
+      mysql:
+        image: mysql:latest
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: false
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: mydb_test
+        ports:
+          - 3306/tcp
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -25,6 +35,12 @@ jobs:
           restore-keys: ${{ runner.os }}-composer-
       - name: Install required dependencies
         run: composer install
+      - name: Create database
+        run: composer require --dev symfony/orm-pack
+            php bin/console doctrine:schema:update --force || echo "No migrations found or schema update failed"
+            php bin/console doctrine:migrations:migrate || echo "No migrations found or migration failed"
+        env:
+            DATABASE_URL: mysql://root:ROOT@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/symfony
       - name: Run unit tests
         uses: php-actions/phpunit@v3
         with:
