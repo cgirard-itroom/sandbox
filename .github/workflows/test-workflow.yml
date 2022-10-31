@@ -39,7 +39,7 @@ jobs:
         run: composer require --dev symfony/orm-pack
           && php bin/console doctrine:migrations:migrate || echo "No migrations found or migration failed"
         env:
-            DATABASE_URL: mysql://root:ROOT@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/symfony
+            DATABASE_URL: mysql://root:root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/mydb_test
       - name: Run unit tests
         uses: php-actions/phpunit@v3
         with:
