@@ -27,3 +27,5 @@ jobs:
         run: composer install
       - name: Run unit tests
         uses: php-actions/phpunit@v3
+        with:
+          memory_limit: 2G
