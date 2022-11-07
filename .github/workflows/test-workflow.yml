@@ -42,5 +42,6 @@ jobs:
           php bin/console doctrine:migrations:migrate --env=test || echo "No migrations found or migration failed"
         env:
             DATABASE_URL: mysql://root:root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/mydb
-      - name: PHPUnit
-        uses: chindit/actions-phpunit-symfony@master
+      - name: Test product
+        run: |
+          php bin/phpunit --filter ProductTest
