@@ -1,9 +1,6 @@
 name: Unit tests workflow
 run-name: ${{ github.actor }} tests code
 on: [push]
-env:
-  DATABASE_URL: mysql://root:root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/mydb
-
 jobs:
   Unit-Tests:
     runs-on: ubuntu-22.04
@@ -42,6 +39,9 @@ jobs:
         run: |
           composer require --dev symfony/orm-pack
           php bin/console doctrine:database:create --if-not-exists --env=test
+          php bin/console doctrine:migrations:migrate --env=test || echo "No migrations found or migration failed"
+        env:
+            DATABASE_URL: mysql://root:root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/mydb
       - name: Setup Node
         uses: actions/setup-node@v2
         with:
@@ -50,7 +50,7 @@ jobs:
         run: yarn install
       - name: Builds assets
         run: yarn encore prod
-      - name: Test product
-        run: |
-          php bin/phpunit --filter ProductTest
-        
+      - name: Run tests
+        run: php bin/phpunit
+        env:
+            DATABASE_URL: mysql://root:root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/mydb
