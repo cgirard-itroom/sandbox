@@ -46,4 +46,4 @@ jobs:
         uses: php-actions/phpunit@v3
         with:
           memory_limit: 2G
-          php_extensions: pdo, pdo_msql
+          php_extensions: pdo_mysql, pdo
