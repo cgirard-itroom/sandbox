@@ -1,5 +1,5 @@
 name: Unit tests workflow
-run-name: ${{ github.actor }} pushed
+run-name: ${{ github.actor }} tests code
 on: [push]
 jobs:
   Unit-Tests:
