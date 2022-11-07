@@ -3,6 +3,7 @@ run-name: ${{ github.actor }} tests code
 on: [push]
 env:
   DATABASE_URL: mysql://root:root@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/mydb
+
 jobs:
   Unit-Tests:
     runs-on: ubuntu-22.04
